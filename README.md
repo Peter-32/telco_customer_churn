@@ -17,10 +17,26 @@ A computer program is said to learn from experience E with respect to some class
 
 ## Assumptions
 
-_
+There are a lot of ideas in my notes on improving the results, but primiarily I will focus on:
+LightGBM, grid search, interactions, groupby agg features, featexp, shap.
 
-Project Organization
-------------
+## How the Problem Would Be Solved Manually?
+
+Look for red flags in the data and give each a score, add up the red flag scores to prioritize customers
+
+## What Data Do You Have Available?
+
+The target, booleans about the service they signed up for, finance information, age of account, and demographics like gender
+
+## What Data Is Not Available That You Wish Was Available?
+
+Late payments, red flags when starting as a client, red flags when already a client
+
+## What Data Should Be Excluded?
+
+CustomerID can be excluded until it's time to score on the production application.  Age of account is okay to keep.
+
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
