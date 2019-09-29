@@ -6,9 +6,6 @@ rootDir = os.path.abspath(os.path.join(currDir, '..')); sys.path.insert(1, rootD
 import warnings
 warnings.filterwarnings("ignore")
 
-# My modules
-
-
 # Public modules
 import re
 import pandas as pd
@@ -64,13 +61,10 @@ df['has_paperless_billing'] = df['paperless_billing'].apply(lambda x: 1 if x.low
 df['payment_method__electronic_check'] = df['payment_method'].apply(lambda x: 1 if x.lower().strip() == "electronic check" else 0)
 df['payment_method__mailed_check'] = df['payment_method'].apply(lambda x: 1 if x.lower().strip() == "mailed check" else 0)
 df['payment_method__bank_transfer_automatic'] = df['payment_method'].apply(lambda x: 1 if x.lower().strip() == "bank transfer (automatic)" else 0)
-
-
-
-
-
-
-df.drop(["gender", "partner", "dependents", "phone_service", "multiple_lines"], axis=1, inplace=True)
+df.drop(["gender", "partner", "dependents", "phone_service", "multiple_lines", \
+         "internet_service", "online_security", "online_backup", "device_protection", \
+         "tech_support", "streaming_tv", "streaming_movies", "contract", "paperless_billing", \
+         "payment_method"], axis=1, inplace=True)
 
 # Split datasets
 train, temp = train_test_split(df, test_size=0.40, stratify=df['churn'])
