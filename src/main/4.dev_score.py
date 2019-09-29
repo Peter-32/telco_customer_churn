@@ -38,7 +38,7 @@ features_pipeline = data_preparation()
 # Model parameters
 full_pipeline = Pipeline([
     ("features", features_pipeline),
-    ("clf", lgb.LGBMClassifier()),  # class_weight='balanced'
+    ("clf", lgb.LGBMClassifier()),
 ])
 
 # Fit

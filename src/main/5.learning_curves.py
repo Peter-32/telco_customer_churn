@@ -37,8 +37,8 @@ features_pipeline = data_preparation()
 # Model parameters
 full_pipeline = Pipeline([
     ("features", features_pipeline),
-    ("clf", LogisticRegression(random_state=1)),
-    # ("clf", lgb.LGBMClassifier(class_weight='balanced')),
+    # ("clf", LogisticRegression(random_state=1)),
+    ("clf", lgb.LGBMClassifier()),
 ])
 
 # Learning curve
@@ -48,8 +48,8 @@ for train_size in train_sizes:
     temp_train = train.iloc[0:train_size]
     temp_train_y = temp_train[["churn"]].values
     full_pipeline.fit(temp_train, temp_train_y)
-    train_pred_y = full_pipeline.predict(train)[:, 1]
-    dev_pred_y = full_pipeline.predict(dev)[:, 1]
+    train_pred_y = full_pipeline.predict(train)
+    dev_pred_y = full_pipeline.predict(dev)
     training_scores.append(accuracy_score(train_y, train_pred_y))
     dev_scores.append(accuracy_score(dev_y, dev_pred_y))
 
@@ -63,5 +63,5 @@ plt.xlabel('Number of training samples')
 plt.ylabel('Recall')
 plt.legend(loc='lower right')
 plt.ylim([0.0, 1.0])
-plt.savefig("../../reports/main_outputs/5.lr_learning_curve.png")
+plt.savefig("../../reports/main_outputs/5.lgbm_learning_curve.png")
 plt.show()
