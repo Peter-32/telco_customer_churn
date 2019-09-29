@@ -4,6 +4,7 @@ from numpy.random import seed
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, \
                                   OneHotEncoder
+from sklearn.impute import SimpleImputer
 
 from sklearn.base import BaseEstimator, TransformerMixin
 import warnings
@@ -60,15 +61,20 @@ def data_preparation():
     num_attribs = train.drop(["churn"] + list(binary_attribs), axis=1).select_dtypes(exclude="O").columns
 
     # Numeric pipeline
+    #### One field is null, and I believe 0 is best to fill it with
+    #### If other fields become null in the future, fill with 0 as well
     num_pipeline = Pipeline([
         ('selector', DataFrameSelector(num_attribs)),
+        ('imputer', SimpleImputer(strategy='constant', fill_value=0)),
         ('std_scaler', StandardScaler()),
         ('minmax_scaler', MinMaxScaler()),
     ])
 
     # Binary pipeline
+    #### No null values but including imputer just in case
     binary_pipeline = Pipeline([
         ('selector', DataFrameSelector(binary_attribs)),
+        ('imputer', SimpleImputer(strategy='mean')),
     ])
 
     # Combine pipelines
