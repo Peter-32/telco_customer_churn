@@ -1,7 +1,23 @@
 telco_customer_churn
 ==============================
 
-Predict customer churn using a Kaggle dataset
+# What is the Problem?
+
+## Informal
+
+Predict customer churn.
+
+## Formal
+
+A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E
+
+- E - Each customer's attributes and whether they churned or not
+- T - Classify if a customer will churn
+- P - Maximize accuracy
+
+## Assumptions
+
+_
 
 Project Organization
 ------------
