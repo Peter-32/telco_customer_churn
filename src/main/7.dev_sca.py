@@ -47,14 +47,8 @@ dev_y = dev[["churn"]].values
 # Data parameters
 features_pipeline = data_preparation()
 
-# Model parameters
-full_pipeline = Pipeline([
-    ("features", features_pipeline),
-    ("clf", lgb.LGBMClassifier()),
-])
-
 models = []
-models.append(('LightGBM', lgb.LGBMClassifier(class_weight='balanced')))
+models.append(('LightGBM', lgb.LGBMClassifier()))
 models.append(('LR_lib', LogisticRegression(solver='liblinear')))
 models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('QDA', QuadraticDiscriminantAnalysis()))
